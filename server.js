@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+console.log(`[DEBUG] STARTUP - CWD: ${process.cwd()}, __dirname: ${__dirname}`);
 const articlesDir = path.join(__dirname, 'app', 'public', 'articles');
+console.log(`[DEBUG] STARTUP - articlesDir: ${articlesDir}`);
+console.log(`[DEBUG] STARTUP - articlesDir exists: ${fs.existsSync(articlesDir)}`);
 
 // API: 모든 글 목록 가져오기
 app.get('/api/articles', (req, res) => {
