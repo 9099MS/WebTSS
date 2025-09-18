@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>새로운 글 추가 방법</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { padding: 2rem; background-color: #f8f9fa; }
+    .container { max-width: 800px; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1, h2 { margin-bottom: 1rem; }
+    .step { margin-top: 2rem; }
+    code { background-color: #e9ecef; padding: 0.2rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+    pre { background-color: #e9ecef; padding: 1rem; border-radius: 4px; white-space: pre-wrap; word-wrap: break-word; }
+    .highlight { color: #d63384; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4">새로운 정보(글) 추가 방법</h1>
+    <p class="lead">새로운 글을 웹사이트에 추가하는 과정은 크게 <strong>2단계</strong>로 이루어집니다. 아래의 안내를 따라 진행해 주세요.</p>
+
+    <hr class="my-4">
+
+    <div class="step">
+      <h2>1단계: 정보 파일(마크다운) 생성</h2>
+      <p>먼저, 웹사이트에 표시될 실제 내용이 담긴 파일을 만듭니다.</p>
+      <ol>
+        <li>프로젝트 폴더에서 <code>app/public/articles</code> 폴더로 이동합니다.</li>
+        <li>해당하는 주제의 폴더(예: <code>growth</code>, <code>monetization</code>)를 선택합니다.</li>
+        <li>그 안에 새로운 텍스트 파일을 만들고, 파일 이름을 <code>my-new-post.md</code>와 같이 영어로 설정합니다. <strong>(주의: 파일 확장자는 반드시 <code>.md</code>여야 합니다)</strong></li>
+        <li>생성된 파일을 열어, 원하는 내용을 자유롭게 작성합니다. (마크다운 문법을 사용할 수 있습니다)</li>
+      </ol>
+    </div>
+
+    <div class="step">
+      <h2>2단계: 웹사이트 목록에 새 글 등록</h2>
+      <p>파일을 만든 후, 웹사이트가 이 파일의 존재를 알 수 있도록 목록에 등록해야 합니다.</p>
+      <ol>
+        <li>프로젝트 폴더에서 <code>app/src/pages/CategoryPage.js</code> 파일을 텍스트 편집기로 엽니다.</li>
+        <li>파일의 맨 위쪽에 있는 <code>articles</code> 라는 부분을 찾습니다.</li>
+        <li>1단계에서 파일을 추가했던 카테고리(예: <code>growth</code>)에, 아래와 같이 <span class="highlight">새로운 한 줄</span>을 추가합니다.</li>
+      </ol>
+
+      <pre><code>const articles = {
+  growth: [
+    { id: 'strategy-1', title: '유튜브 채널 성장을 위한 첫 번째 전략' },
+    { id: 'tags-for-views', title: '조회수를 높이는 태그 작성법' },
+    <span class="highlight">{ id: 'my-new-post', title: '내가 새로 작성한 글 제목' } // &lt;-- 이 줄을 추가</span>
+  ],
+  monetization: [
+    // ...
+  ],
+  // ...
+};</code></pre>
+
+      <div class="alert alert-warning mt-3">
+        <strong>매우 중요:</strong> <code>id</code>는 1단계에서 만들었던 파일의 이름(<code>.md</code> 제외)과 <strong>정확히 일치</strong>해야 합니다. <code>title</code>은 웹사이트 목록에 표시될 제목입니다.
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <p>파일을 저장하면, 웹사이트가 자동으로 새로고침되면서 새로운 글이 목록에 나타납니다. 별도의 저장 버튼 없이, 파일 수정만으로 모든 것이 관리됩니다.</p>
+    <div class="d-grid">
+        <a href="/" class="btn btn-primary mt-3">메인으로 돌아가기</a>
+    </div>
+  </div>
+</body>
+</html>
